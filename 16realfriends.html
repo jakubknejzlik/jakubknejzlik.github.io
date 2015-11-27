@@ -64,7 +64,7 @@ $.getJSON('http://sixteen-real-friends-dev.herokuapp.com/v2/verifications/email/
     container.html('Your email ' + data.email + ' has been successfully verified')
   })
   .fail(function(data){
-    container.html('Sorry we could not verify your email, reason: ' + data.responseJSON.error)
+    container.html('Sorry we could not verify your email, reason: <br />' + data.responseJSON.error)
   })
 </script>
 
