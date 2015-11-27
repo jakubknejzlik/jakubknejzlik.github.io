@@ -54,7 +54,19 @@
     <h1>Email verification</h1>
       <div class="box-wysiwyg-simple">
   <div class="wrapper mb-50 center">
-<h4>Verifying your email...</h4>
+<h4 id="verificationMessageContainer">Verifying your email...</h4>
+
+<script type="text/javascript">
+var token = window.location.search.replace('?','');
+var container = $('#verificationMessageContainer');
+$.getJSON('http://sixteen-real-friends-dev.herokuapp.com/v2/verifications/email/' + token)
+  .done(function(data){
+    container.html('Your email ' + data.email + ' has been successfully verified')
+  })
+  .fail(function(data){
+    container.html('Sorry we could not verify your email, reason: ' + data.responseJSON.error)
+  })
+</scirpt>
 
 <!--<p>We couldn't find the page you were looking for...<br />-->
 <!--What do you want to do now?</p>-->
