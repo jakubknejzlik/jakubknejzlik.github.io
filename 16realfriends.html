@@ -59,7 +59,7 @@
 <script type="text/javascript">
 var token = window.location.search.replace('?','');
 var container = $('#verificationMessageContainer');
-$.getJSON('http://sixteen-real-friends-dev.herokuapp.com/v2/verifications/email/' + token)
+$.getJSON('http://sixteen-real-friends.herokuapp.com/v2/verifications/email/' + token)
   .done(function(data){
     container.html('Your email ' + data.email + ' has been successfully verified')
   })
