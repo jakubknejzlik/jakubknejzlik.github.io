@@ -1,1 +1,40 @@
-Hello world!!
+<!doctype html>
+<html ng-app>
+  <head>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.0.5/angular.min.js"></script>
+    <script src="script.js"></script>
+
+  <script type="application/javascript">
+    function Ctrl($rootScope) {
+      window.$windowScope = $rootScope;
+      
+      $rootScope.contentObject = {test:'aaa'};
+      
+      
+      
+      $rootScope.open = function(){
+        window.open('https://run.plnkr.co/A7M6xvzBqE15WzBl/',null,'height=400,width=400,toolbar=no,menubar=no,location=no,status=no,titlebar=no');
+      };
+      
+      if(window.opener && window.opener.$windowScope){
+        $windowRootScope = window.opener.$windowScope
+        $windowRootScope.buttonHidden = true;
+        $rootScope.contentObject = $windowRootScope.contentObject;
+        $rootScope.$watch('contentObject',function(newValue){
+          $windowRootScope.$apply(function(){
+            $windowRootScope.contentObject = newValue;
+          })
+        },true);
+      }
+    }
+  </script>
+  </head>
+  <body>
+    <div ng-controller="Ctrl">
+    object value: {{contentObject.test}} <br />
+    object editor: <input type="text" ng-model="contentObject.test" /><br />
+    <button ng-show="!buttonHidden" ng-click="open()">edit in window</button>
+    </div>
+    
+  </body>
+</html>
